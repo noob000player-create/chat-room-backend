@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 @Controller
 public class ChatController {
@@ -27,7 +28,7 @@ public class ChatController {
     @MessageMapping("/sendMessage")
     @SendTo("/topic/message")
     public ChatMessage sendMessage(ChatMessage message){
-        message.setTime(LocalDateTime.now());
+        message.setTime(LocalDateTime.now(ZoneId.of("Asia/Kolkata")));
         return message;
     }
 
@@ -48,4 +49,5 @@ public class ChatController {
     public String chat(){
         return "chat";
     }
+
 }
